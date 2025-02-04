@@ -418,22 +418,22 @@ section{
     animation: animate-path4 1s 1s linear forwards;
 }
 
-@keyframes animate-path1{
+@keyframes animate-path-1{
     100%{
         stroke-dashoffset: 50;
     }
 }
-@keyframes animate-path2{
+@keyframes animate-path-2{
     100%{
-        stroke-dashoffset: 360;
+        stroke-dashoffset: 50;
     }
 }
-@keyframes animate-path3{
+@keyframes animate-path-3{
     100%{
         stroke-dashoffset: 125;
     }
 }
-@keyframes animate-path4{
+@keyframes animate-path-4{
     100%{
         stroke-dashoffset: 125;
     }
