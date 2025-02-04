@@ -406,16 +406,16 @@ section{
     stroke-linecap: round;
 }
 .path-1{
-    animation: animate-path1 1s 1s linear forwards;
+    animation: animate-path-1 1s 1s linear forwards;
 }
 .path-2{
-    animation: animate-path2 1s 1s linear forwards;
+    animation: animate-path-2 1s 1s linear forwards;
 }
 .path-3{
-    animation: animate-path3 1s 1s linear forwards;
+    animation: animate-path-3 1s 1s linear forwards;
 }
 .path-4{
-    animation: animate-path4 1s 1s linear forwards;
+    animation: animate-path-4 1s 1s linear forwards;
 }
 
 @keyframes animate-path-1{
