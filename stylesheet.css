@@ -259,10 +259,10 @@ section{
     margin-left: 120px;
 }
 .container2{
-    width: 500px;
+    width: 440px;
     height: 500px;
     padding: 75px 90px;
-    margin-left: 120px;
+    margin-left: auto;
 }
 .heading1{
     text-align: center;
