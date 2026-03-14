@@ -1,12 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us</title>
+
+<title>Departments</title>
 
 <style>
+
+/* ===== GENERAL ===== */
 
 body{
 margin:0;
@@ -19,7 +22,7 @@ padding:80px 20px;
 }
 
 .container{
-max-width:700px;
+max-width:1200px;
 margin:auto;
 }
 
@@ -27,145 +30,442 @@ margin:auto;
 text-align:center;
 font-size:32px;
 font-weight:700;
-margin-bottom:40px;
+margin-bottom:60px;
 }
 
-.contact-form{
+
+/* ===== LAYOUT ===== */
+
+.dept-wrapper{
+display:grid;
+grid-template-columns:280px 1fr;
+gap:40px;
+align-items:stretch;
+}
+
+
+/* ===== LEFT MENU ===== */
+
+.dept-menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+height:100%;
+}
+
+.dept-btn{
+padding:16px 18px;
 background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-}
-
-.form-group{
-margin-bottom:20px;
-}
-
-label{
-display:block;
-margin-bottom:6px;
-font-weight:600;
-}
-
-input, textarea{
-width:100%;
-padding:12px;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:14px;
-}
-
-textarea{
-height:120px;
-resize:none;
-}
-
-button{
-background:#f97316;
-color:white;
 border:none;
-padding:12px 24px;
-border-radius:8px;
+border-radius:12px;
+text-align:left;
 font-weight:600;
 cursor:pointer;
+transition:.35s;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
 }
 
-.success{
-display:none;
-background:#16a34a;
+.dept-btn:hover{
+transform:translateX(8px) rotateY(8deg);
+}
+
+.dept-btn.active{
+background:#f97316;
 color:white;
-padding:12px;
-border-radius:8px;
+}
+
+
+/* ===== CONTENT AREA ===== */
+
+.content-area{
+position:relative;
+min-height:350px;
+overflow:hidden;
+}
+
+
+/* ===== CARD ===== */
+
+.dept-card{
+background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+
+position:absolute;
+width:100%;
+opacity:0;
+transform:translateX(40px);
+transition:.4s ease;
+}
+
+.dept-card.active{
+opacity:1;
+transform:translateX(0);
+position:relative;
+}
+
+
+/* IMAGE */
+
+.dept-card img{
+width:50%;
+display:block;
+margin:0 auto 20px;
+border-radius:14px;
+}
+
+
+/* TEXT */
+
+.dept-card h3{
+font-size:22px;
+margin-bottom:10px;
+}
+
+.dept-card p{
+color:#555;
 margin-bottom:20px;
-text-align:center;
+}
+
+
+/* BUTTONS */
+
+.learn{
+color:#f97316;
+font-weight:600;
+cursor:pointer;
+text-decoration:none;
+}
+
+.back-btn{
+margin-top:20px;
+padding:10px 18px;
+border:none;
+background:#f97316;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+}
+
+
+/* ===== DETAILS TOGGLE ===== */
+
+.dept-front{
+display:block;
+}
+
+.dept-details{
+display:none;
+animation:fade .3s ease;
+}
+
+.dept-card.show-details .dept-front{
+display:none;
+}
+
+.dept-card.show-details .dept-details{
+display:block;
+}
+
+
+/* ===== ANIMATION ===== */
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+.dept-wrapper{
+grid-template-columns:1fr;
+}
+
+.dept-menu{
+flex-direction:column;
+}
+
+.dept-card{
+position:relative;
+opacity:1;
+transform:none;
+margin-bottom:15px;
+display:none;
+}
+
+.dept-card.active{
+display:block;
+}
+
 }
 
 </style>
-
 </head>
 
 
 
 <body>
 
-<section class="section">
 
+<section class="section">
 <div class="container">
 
-<h2 class="title">Contact Us</h2>
+<h2 class="title">
+We Have Most of Popular Departments
+</h2>
 
-<div class="contact-form">
 
-<div id="successMsg" class="success">
-Message sent successfully!
-</div>
+<div class="dept-wrapper">
 
-<form id="contactForm">
 
-<div class="form-group">
-<label>Name</label>
-<input type="text" id="name" required>
-</div>
+<!-- LEFT MENU -->
 
-<div class="form-group">
-<label>Email</label>
-<input type="email" id="email" required>
-</div>
+<div class="dept-menu">
 
-<div class="form-group">
-<label>Phone</label>
-<input type="tel" id="phone" required>
-</div>
-
-<div class="form-group">
-<label>Message</label>
-<textarea id="message" required></textarea>
-</div>
-
-<button type="submit">
-Send Message
+<button class="dept-btn active" onclick="openDept(event,'dept1')">
+Class 11th - Commerce
 </button>
 
-</form>
+<button class="dept-btn" onclick="openDept(event,'dept2')">
+Class 12th - Commerce
+</button>
+
+<button class="dept-btn" onclick="openDept(event,'dept3')">
+CA - Foundation
+</button>
+
+<button class="dept-btn" onclick="openDept(event,'dept4')">
+CA - Intermediate
+</button>
+
+</div>
+
+
+
+<!-- RIGHT CONTENT -->
+
+<div class="content-area">
+
+
+<!-- CARD 1 -->
+
+<div id="dept1" class="dept-card active">
+
+<div class="dept-front">
+
+<img src="./assets/Images/depertment-1.png">
+
+<h3>Class 11th - Commerce</h3>
+
+<p>High-quality modern commerce learning with expert faculty.</p>
+
+<span class="learn" onclick="showDetails(event,this)">
+Learn More →
+</span>
+
+</div>
+
+
+<div class="dept-details">
+
+<h3>Course Highlights</h3>
+
+<ul>
+<li>Concept based learning</li>
+<li>Weekly tests</li>
+<li>Doubt solving sessions</li>
+<li>Board exam preparation</li>
+<li>Experienced faculty</li>
+</ul>
+
+<button class="back-btn" onclick="hideDetails(this)">
+← Back
+</button>
 
 </div>
 
 </div>
 
+
+
+<!-- CARD 2 -->
+
+<div id="dept2" class="dept-card">
+
+<div class="dept-front">
+
+<img src="./assets/Images/depertment-2.png">
+
+<h3>Class 12th - Commerce</h3>
+
+<p>Strong foundation for board exams and professional courses.</p>
+
+<span class="learn" onclick="showDetails(event,this)">
+Learn More →
+</span>
+
+</div>
+
+
+<div class="dept-details">
+
+<h3>Course Highlights</h3>
+
+<ul>
+<li>Board exam preparation</li>
+<li>Mock test series</li>
+<li>Expert mentoring</li>
+<li>Doubt solving sessions</li>
+</ul>
+
+<button class="back-btn" onclick="hideDetails(this)">
+← Back
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 3 -->
+
+<div id="dept3" class="dept-card">
+
+<div class="dept-front">
+
+<img src="./assets/Images/depertment-3.png">
+
+<h3>CA - Foundation</h3>
+
+<p>Start your Chartered Accountant journey with expert guidance.</p>
+
+<span class="learn" onclick="showDetails(event,this)">
+Learn More →
+</span>
+
+</div>
+
+
+<div class="dept-details">
+
+<h3>Course Highlights</h3>
+
+<ul>
+<li>CA exam preparation</li>
+<li>Concept clarity</li>
+<li>Practice tests</li>
+<li>Personal mentorship</li>
+</ul>
+
+<button class="back-btn" onclick="hideDetails(this)">
+← Back
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- CARD 4 -->
+
+<div id="dept4" class="dept-card">
+
+<div class="dept-front">
+
+<img src="./assets/Images/depertment-1.png">
+
+<h3>CA - Intermediate</h3>
+
+<p>Advanced CA preparation with practical concepts and case studies.</p>
+
+<span class="learn" onclick="showDetails(event,this)">
+Learn More →
+</span>
+
+</div>
+
+
+<div class="dept-details">
+
+<h3>Course Highlights</h3>
+
+<ul>
+<li>Advanced accounting</li>
+<li>Case study training</li>
+<li>Test series</li>
+<li>Expert faculty</li>
+</ul>
+
+<button class="back-btn" onclick="hideDetails(this)">
+← Back
+</button>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+</div>
 </section>
 
 
 
 <script>
 
-document.getElementById("contactForm")
-.addEventListener("submit",function(e){
+function openDept(evt,id){
+
+let cards=document.querySelectorAll(".dept-card");
+let btns=document.querySelectorAll(".dept-btn");
+
+cards.forEach(card=>card.classList.remove("active"));
+btns.forEach(btn=>btn.classList.remove("active"));
+
+document.getElementById(id).classList.add("active");
+evt.currentTarget.classList.add("active");
+
+}
+
+
+function showDetails(e,el){
 
 e.preventDefault();
 
-let formData=new FormData();
+let card=el.closest(".dept-card");
 
-formData.append("name",document.getElementById("name").value);
-formData.append("email",document.getElementById("email").value);
-formData.append("phone",document.getElementById("phone").value);
-formData.append("message",document.getElementById("message").value);
+card.classList.add("show-details");
 
-fetch("https://script.google.com/macros/s/AKfycbxf_5kCqCP6qnvntK83DZQuMkrcExRtCXnV60uOSu49caOpOw8aohqGEGMj8HjsxsP0Jg/exec",{
-method:"POST",
-body:formData
-})
-.then(res=>res.text())
-.then(data=>{
+}
 
-document.getElementById("successMsg").style.display="block";
 
-document.getElementById("contactForm").reset();
+function hideDetails(el){
 
-});
+let card=el.closest(".dept-card");
 
-});
+card.classList.remove("show-details");
+
+}
 
 </script>
 
+
 </body>
 </html>
+```
